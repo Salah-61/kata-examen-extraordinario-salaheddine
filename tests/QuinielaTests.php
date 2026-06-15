@@ -62,4 +62,15 @@ class QuinielaTests extends TestCase
         $this->assertEquals("alemania-belgica: X, francia-españa: 2", $resultado);
     }
 
+    #[Test]
+    function DadaUnaQuinielaAlIntenerQuitarUnaApuestaExistenteYQuedarVaciaSeDebeMostrarAviso()
+    {
+        $quiniela = new Quiniela();
+
+        $quiniela->gestionarQuiniela("apostar españa-brasil 1");
+        $resultado = $quiniela->gestionarQuiniela("quitar españa-brasil");
+
+        $this->assertEquals("La quiniela está vacía", $resultado);
+    }
+
 }
