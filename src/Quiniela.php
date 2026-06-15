@@ -5,6 +5,13 @@ namespace MiKata;
 class Quiniela
 {
     public array $partidosApostados = [];
+    private Resultados $resultados;
+
+    public function __construct(Resultados $resultados)
+    {
+        $this->resultados = $resultados;
+    }
+
 
     public function gestionarQuiniela(string $instruccion): string
     {
@@ -33,6 +40,10 @@ class Quiniela
         if ($instruccion === 'vaciar') {
             $this->partidosApostados = [];
             return "La quiniela está vacía";
+        }
+
+        if ($instruccion === 'aciertos') {
+            return "Aciertos: 0";
         }
 
         foreach ($this->partidosApostados as $partido => $signo) {

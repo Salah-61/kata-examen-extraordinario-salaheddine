@@ -11,7 +11,8 @@ class QuinielaTests extends TestCase
     #[Test]
     function DadaUnaApuestaConSignoIncorrectoDebeDevolverMensajeDeError()
     {
-        $quiniela = new Quiniela();
+        $resultadosMock = $this->createMock(Resultados::class);
+        $quiniela = new Quiniela($resultadosMock);
 
         $resultado = $quiniela->gestionarQuiniela("apostar españa-brasil 9");
 
@@ -21,7 +22,8 @@ class QuinielaTests extends TestCase
     #[Test]
     function DadaUnaApuestaConSignoCorrectoSeDebeDevolverQuinielaActual()
     {
-        $quiniela = new Quiniela();
+        $resultadosMock = $this->createMock(Resultados::class);
+        $quiniela = new Quiniela($resultadosMock);
 
         $resultado = $quiniela->gestionarQuiniela("apostar españa-brasil 1");
 
@@ -31,7 +33,8 @@ class QuinielaTests extends TestCase
     #[Test]
     function DadaUnaQuinielaConMasDeUnaApuestaAlAñadirOtraApuestaSeDebeMostrarEstadoActualDeLaQuinielaConLaNuevaApuesta()
     {
-        $quiniela = new Quiniela();
+        $resultadosMock = $this->createMock(Resultados::class);
+        $quiniela = new Quiniela($resultadosMock);
 
         $quiniela->gestionarQuiniela("apostar españa-brasil 1");
         $resultado = $quiniela->gestionarQuiniela("apostar españa-argentina x");
@@ -42,7 +45,8 @@ class QuinielaTests extends TestCase
     #[Test]
     function DadaUnaQuinielaAlIntenerQuitarUnaApuestaInexistenteSeDebeDevolverMensajeDeError()
     {
-        $quiniela = new Quiniela();
+        $resultadosMock = $this->createMock(Resultados::class);
+        $quiniela = new Quiniela($resultadosMock);
 
         $quiniela->gestionarQuiniela("apostar españa-brasil 1");
         $resultado = $quiniela->gestionarQuiniela("quitar españa-argentina");
@@ -53,7 +57,8 @@ class QuinielaTests extends TestCase
     #[Test]
     function DadaUnaQuinielaAlIntenerQuitarUnaApuestaExistenteYNoQuedarVaciaSeDebeDevolverQuinielaActual()
     {
-        $quiniela = new Quiniela();
+        $resultadosMock = $this->createMock(Resultados::class);
+        $quiniela = new Quiniela($resultadosMock);
 
         $quiniela->gestionarQuiniela("apostar españa-brasil 1");
         $quiniela->gestionarQuiniela("apostar alemania-belgica x");
@@ -66,7 +71,8 @@ class QuinielaTests extends TestCase
     #[Test]
     function DadaUnaQuinielaAlIntenerQuitarUnaApuestaExistenteYQuedarVaciaSeDebeMostrarAviso()
     {
-        $quiniela = new Quiniela();
+        $resultadosMock = $this->createMock(Resultados::class);
+        $quiniela = new Quiniela($resultadosMock);
 
         $quiniela->gestionarQuiniela("apostar españa-brasil 1");
         $resultado = $quiniela->gestionarQuiniela("quitar españa-brasil");
@@ -77,7 +83,8 @@ class QuinielaTests extends TestCase
     #[Test]
     function DadaUnaQuinielaAlVaciarseSeDebeMostrarAvisoYVaciarLaQuiniela()
     {
-        $quiniela = new Quiniela();
+        $resultadosMock = $this->createMock(Resultados::class);
+        $quiniela = new Quiniela($resultadosMock);
 
         $quiniela->gestionarQuiniela("apostar españa-brasil 1");
         $resultado = $quiniela->gestionarQuiniela("vaciar");
@@ -87,17 +94,16 @@ class QuinielaTests extends TestCase
     }
 
     #[Test]
-    function DadaUnaQuinielaConUnPartidoInexistenteSeDebeMostrarMensajeDeError()
+    function DadaUnaQuinielaConUnSoloPartidoInexistenteSeDebeMostraAciertosCero()
     {
         $resultadosMock = $this->createMock(Resultados::class);
         $resultadosMock->method('getResultado')->willReturn(null);
-        $quiniela = new Quiniela();
+        $quiniela = new Quiniela($resultadosMock);
 
         $quiniela->gestionarQuiniela("apostar españa-brasil 1");
-        $resultado = $quiniela->gestionarQuiniela("vaciar");
+        $resultado = $quiniela->gestionarQuiniela("aciertos");
 
-        $this->assertempty($quiniela->partidosApostados);
-        $this->assertEquals("El partido no existe", $resultado);
+        $this->assertEquals("Aciertos: 0", $resultado);
     }
 
 }
