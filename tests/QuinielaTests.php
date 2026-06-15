@@ -110,12 +110,11 @@ class QuinielaTests extends TestCase
     function DadaUnaQuinielaConVariosPartidosExistenteYDisputadosSeDebeMostrarNumeroDeAciertos()
     {
         $resultadosMock = $this->createMock(Resultados::class);
+        $resultadosMock->method('getResultado')->willReturn("1");
         $quiniela = new Quiniela($resultadosMock);
 
-        $resultadosMock->method('getResultado')->willReturn(1);
         $quiniela->gestionarQuiniela("apostar españa-brasil 1");
-        $resultadosMock->method('getResultado')->willReturn(2);
-        $quiniela->gestionarQuiniela("apostar brasil-españa 2");
+        $quiniela->gestionarQuiniela("apostar francia-españa 1");
         $resultado = $quiniela->gestionarQuiniela("aciertos");
 
         $this->assertEquals("Aciertos: 2", $resultado);

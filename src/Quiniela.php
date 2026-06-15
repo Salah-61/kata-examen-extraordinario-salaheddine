@@ -5,6 +5,7 @@ namespace MiKata;
 class Quiniela
 {
     public array $partidosApostados = [];
+    public $aciertos = 0;
     private Resultados $resultados;
 
     public function __construct(Resultados $resultados)
@@ -43,7 +44,14 @@ class Quiniela
         }
 
         if ($instruccion === 'aciertos') {
-            return "Aciertos: 0";
+            foreach ($this->partidosApostados as $partido => $signo) {
+                $resultadoReal = $this->resultados->getResultado($partido);
+                if ($resultadoReal == null || $resultadoReal != $signo) {
+                    continue;
+                }
+                $this->aciertos++;
+            }
+            return "Aciertos: $this->aciertos";
         }
 
         foreach ($this->partidosApostados as $partido => $signo) {
