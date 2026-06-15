@@ -5,20 +5,28 @@ namespace MiKata;
 class Quiniela
 {
 
+    private array $partidosApostados = [];
+
     public function gestionarQuiniela(string $instruccion): string
     {
         $partesIntruccion = explode(' ', trim($instruccion));
         $instruccion = strtolower($partesIntruccion[0] ?? '');
         $partido = strtolower($partesIntruccion[1]);
-        $signo = strtolower($partesIntruccion[2]);
+        $signo = strtoupper($partesIntruccion[2]);
 
 
-        if ($signo != '1' && $signo != 'x' && $signo != '2') {
+        if ($signo != '1' && $signo != 'X' && $signo != '2') {
             return "Signo no válido";
         }
 
         if ($instruccion === 'apostar') {
-            return "$partido: $signo";
+            $this->partidosApostados[$partido] = $signo;
+            foreach ($this->partidosApostados as $partido => $signo) {
+                $listaPartidosFormateados .= "$partido: $signo, ";
+            }
+            $listaPartidosFormateados = rtrim($listaPartidosFormateados, ', ');
+
+            return $listaPartidosFormateados;
         }
 
         return " ";
