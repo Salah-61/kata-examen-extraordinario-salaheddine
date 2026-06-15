@@ -4,7 +4,6 @@ namespace MiKata;
 
 class Quiniela
 {
-
     private array $partidosApostados = [];
 
     public function gestionarQuiniela(string $instruccion): string
@@ -21,15 +20,14 @@ class Quiniela
 
         if ($instruccion === 'apostar') {
             $this->partidosApostados[$partido] = $signo;
-            foreach ($this->partidosApostados as $partido => $signo) {
-                $listaPartidosFormateados .= "$partido: $signo, ";
-            }
-            $listaPartidosFormateados = rtrim($listaPartidosFormateados, ', ');
-
-            return $listaPartidosFormateados;
         }
 
-        return " ";
+        foreach ($this->partidosApostados as $partido => $signo) {
+            $listaPartidosFormateados .= "$partido: $signo, ";
+        }
+        $listaPartidosFormateados = rtrim($listaPartidosFormateados, ', ');
+
+        return $listaPartidosFormateados;
     }
 
 }
