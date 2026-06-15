@@ -39,7 +39,7 @@ class QuinielaTests extends TestCase
     }
 
     #[Test]
-    function DadaUnaQuinielaAlIntenerQuitarUnaApuestaInexistenteSeDebeDevolverMensajeDeErrr()
+    function DadaUnaQuinielaAlIntenerQuitarUnaApuestaInexistenteSeDebeDevolverMensajeDeError()
     {
         $quiniela = new Quiniela();
 
@@ -48,4 +48,18 @@ class QuinielaTests extends TestCase
 
         $this->assertEquals("La apuesta seleccionada no existe", $resultado);
     }
+
+    #[Test]
+    function DadaUnaQuinielaAlIntenerQuitarUnaApuestaExistenteYNoQuedarVaciaSeDebeDevolverQuinielaActual()
+    {
+        $quiniela = new Quiniela();
+
+        $quiniela->gestionarQuiniela("añadir españa-brasil 1");
+        $quiniela->gestionarQuiniela("añadir alemania-belgica x");
+        $quiniela->gestionarQuiniela("añadir francia-españa 2");
+        $resultado = $quiniela->gestionarQuiniela("quitar españa-brasil");
+
+        $this->assertEquals("alemania-belgica: X, francia-españa: 2", $resultado);
+    }
+
 }
