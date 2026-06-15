@@ -20,6 +20,10 @@ class Quiniela
             $this->partidosApostados[$partido] = $signo;
         }
 
+        if ($instruccion === 'quitar') {
+                return "La apuesta seleccionada no existe";
+        }
+
         foreach ($this->partidosApostados as $partido => $signo) {
             $listaPartidosFormateados .= "$partido: $signo, ";
         }
