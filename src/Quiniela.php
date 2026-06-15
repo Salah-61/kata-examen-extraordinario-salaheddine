@@ -13,12 +13,10 @@ class Quiniela
         $partido = strtolower($partesIntruccion[1]);
         $signo = strtoupper($partesIntruccion[2]);
 
-
-        if ($signo != '1' && $signo != 'X' && $signo != '2') {
-            return "Signo no válido";
-        }
-
         if ($instruccion === 'apostar') {
+            if ($signo != '1' && $signo != 'X' && $signo != '2') {
+                return "Signo no válido";
+            }
             $this->partidosApostados[$partido] = $signo;
         }
 

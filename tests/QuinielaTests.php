@@ -38,4 +38,14 @@ class QuinielaTests extends TestCase
         $this->assertEquals("españa-brasil: 1, españa-argentina: X", $resultado);
     }
 
+    #[Test]
+    function DadaUnaQuinielaAlIntenerQuitarUnaApuestaInexistenteSeDebeDevolverMensajeDeErrr()
+    {
+        $quiniela = new Quiniela();
+
+        $quiniela->gestionarQuiniela("añadir españa-brasil 1");
+        $resultado = $quiniela->gestionarQuiniela("quitar españa-argentina");
+
+        $this->assertEquals("La apuesta seleccionada no existe", $resultado);
+    }
 }
