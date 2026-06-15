@@ -106,4 +106,19 @@ class QuinielaTests extends TestCase
         $this->assertEquals("Aciertos: 0", $resultado);
     }
 
+    #[Test]
+    function DadaUnaQuinielaConVariosPartidosExistenteYDisputadosSeDebeMostrarNumeroDeAciertos()
+    {
+        $resultadosMock = $this->createMock(Resultados::class);
+        $quiniela = new Quiniela($resultadosMock);
+
+        $resultadosMock->method('getResultado')->willReturn(1);
+        $quiniela->gestionarQuiniela("apostar españa-brasil 1");
+        $resultadosMock->method('getResultado')->willReturn(2);
+        $quiniela->gestionarQuiniela("apostar brasil-españa 2");
+        $resultado = $quiniela->gestionarQuiniela("aciertos");
+
+        $this->assertEquals("Aciertos: 2", $resultado);
+    }
+
 }
