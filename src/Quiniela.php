@@ -5,14 +5,13 @@ namespace MiKata;
 class Quiniela
 {
     public array $partidosApostados = [];
-    public $aciertos = 0;
+    public int $aciertos = 0;
     private Resultados $resultados;
 
     public function __construct(Resultados $resultados)
     {
         $this->resultados = $resultados;
     }
-
 
     public function gestionarQuiniela(string $instruccion): string
     {
@@ -57,9 +56,8 @@ class Quiniela
         foreach ($this->partidosApostados as $partido => $signo) {
             $listaPartidosFormateados .= "$partido: $signo, ";
         }
-        $listaPartidosFormateados = rtrim($listaPartidosFormateados, ', ');
 
-        return $listaPartidosFormateados;
+        return rtrim($listaPartidosFormateados, ', ');
     }
 
 }

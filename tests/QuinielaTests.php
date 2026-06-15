@@ -1,6 +1,5 @@
 <?php
 
-use MiKata\Menu;
 use MiKata\Resultados;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
