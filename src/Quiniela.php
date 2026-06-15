@@ -21,10 +21,10 @@ class Quiniela
         }
 
         if ($instruccion === 'quitar') {
-            if (!isset($this->partidosApostados[$partido])) {
+            if (!array_key_exists($partido, $this->partidosApostados)) {
                 return "La apuesta seleccionada no existe";
             }
-            
+            unset($this->partidosApostados[$partido]);
         }
 
         foreach ($this->partidosApostados as $partido => $signo) {

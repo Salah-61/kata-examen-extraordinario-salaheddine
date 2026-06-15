@@ -43,7 +43,7 @@ class QuinielaTests extends TestCase
     {
         $quiniela = new Quiniela();
 
-        $quiniela->gestionarQuiniela("añadir españa-brasil 1");
+        $quiniela->gestionarQuiniela("apostar españa-brasil 1");
         $resultado = $quiniela->gestionarQuiniela("quitar españa-argentina");
 
         $this->assertEquals("La apuesta seleccionada no existe", $resultado);
@@ -54,9 +54,9 @@ class QuinielaTests extends TestCase
     {
         $quiniela = new Quiniela();
 
-        $quiniela->gestionarQuiniela("añadir españa-brasil 1");
-        $quiniela->gestionarQuiniela("añadir alemania-belgica x");
-        $quiniela->gestionarQuiniela("añadir francia-españa 2");
+        $quiniela->gestionarQuiniela("apostar españa-brasil 1");
+        $quiniela->gestionarQuiniela("apostar alemania-belgica x");
+        $quiniela->gestionarQuiniela("apostar francia-españa 2");
         $resultado = $quiniela->gestionarQuiniela("quitar españa-brasil");
 
         $this->assertEquals("alemania-belgica: X, francia-españa: 2", $resultado);
