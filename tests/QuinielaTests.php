@@ -27,4 +27,15 @@ class QuinielaTests extends TestCase
         $this->assertEquals("españa-brasil: 1", $resultado);
     }
 
+    #[Test]
+    function DadaUnaQuinielaConMasDeUnaApuestaAlAñadirOtraApuestaSeDebeMostrarEstadoActualDeLaQuinielaConLaNuevaApuesta()
+    {
+        $quiniela = new Quiniela();
+
+        $quiniela->gestionarQuiniela("apostar españa-brasil 1");
+        $resultado = $quiniela->gestionarQuiniela("apostar españa-argentina x");
+
+        $this->assertEquals("españa-brasil: 1,  españa-argentina X", $resultado);
+    }
+
 }

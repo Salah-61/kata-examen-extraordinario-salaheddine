@@ -17,6 +17,11 @@ class Quiniela
             return "Signo no válido";
         }
 
-        return "$partido: $signo";
+        if ($instruccion === 'apostar') {
+            return "$partido: $signo";
+        }
+
+        return " ";
     }
+
 }
