@@ -21,7 +21,9 @@ class Quiniela
         }
 
         if ($instruccion === 'quitar') {
+            if (!isset($this->partidosApostados[$partido])) {
                 return "La apuesta seleccionada no existe";
+            }
         }
 
         foreach ($this->partidosApostados as $partido => $signo) {
