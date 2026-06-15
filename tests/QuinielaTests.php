@@ -1,5 +1,6 @@
 <?php
 
+use MiKata\Menu;
 use MiKata\Resultados;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -83,6 +84,20 @@ class QuinielaTests extends TestCase
 
         $this->assertempty($quiniela->partidosApostados);
         $this->assertEquals("La quiniela está vacía", $resultado);
+    }
+
+    #[Test]
+    function DadaUnaQuinielaConUnPartidoInexistenteSeDebeMostrarMensajeDeError()
+    {
+        $resultadosMock = $this->createMock(Resultados::class);
+        $resultadosMock->method('getResultado')->willReturn(null);
+        $quiniela = new Quiniela();
+
+        $quiniela->gestionarQuiniela("apostar españa-brasil 1");
+        $resultado = $quiniela->gestionarQuiniela("vaciar");
+
+        $this->assertempty($quiniela->partidosApostados);
+        $this->assertEquals("El partido no existe", $resultado);
     }
 
 }
