@@ -17,4 +17,14 @@ class QuinielaTests extends TestCase
         $this->assertEquals("Signo no válido", $resultado);
     }
 
+    #[Test]
+    function DadaUnaApuestaConSignoCorrectoSeDebeDevolverQuinielaActual()
+    {
+        $quiniela = new Quiniela();
+
+        $resultado = $quiniela->gestionarQuiniela("apostar españa-brasil 0");
+
+        $this->assertEquals("españa-brasil: 0", $resultado);
+    }
+
 }
