@@ -4,7 +4,7 @@ namespace MiKata;
 
 class Quiniela
 {
-    private array $partidosApostados = [];
+    public array $partidosApostados = [];
 
     public function gestionarQuiniela(string $instruccion): string
     {
@@ -28,6 +28,11 @@ class Quiniela
             if (empty($this->partidosApostados)) {
                 return "La quiniela está vacía";
             }
+        }
+
+        if ($instruccion === 'vaciar') {
+            $this->partidosApostados = [];
+            return "La quiniela está vacía";
         }
 
         foreach ($this->partidosApostados as $partido => $signo) {

@@ -74,13 +74,14 @@ class QuinielaTests extends TestCase
     }
 
     #[Test]
-    function DadaUnaQuinielaAlVaciarseSeDebeMostrarAviso()
+    function DadaUnaQuinielaAlVaciarseSeDebeMostrarAvisoYVaciarLaQuiniela()
     {
         $quiniela = new Quiniela();
 
         $quiniela->gestionarQuiniela("apostar españa-brasil 1");
         $resultado = $quiniela->gestionarQuiniela("vaciar");
 
+        $this->assertempty($quiniela->partidosApostados);
         $this->assertEquals("La quiniela está vacía", $resultado);
     }
 
