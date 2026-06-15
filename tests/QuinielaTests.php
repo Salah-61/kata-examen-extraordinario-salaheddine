@@ -22,9 +22,9 @@ class QuinielaTests extends TestCase
     {
         $quiniela = new Quiniela();
 
-        $resultado = $quiniela->gestionarQuiniela("apostar españa-brasil 0");
+        $resultado = $quiniela->gestionarQuiniela("apostar españa-brasil 1");
 
-        $this->assertEquals("españa-brasil: 0", $resultado);
+        $this->assertEquals("españa-brasil: 1", $resultado);
     }
 
 }
