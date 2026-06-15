@@ -25,6 +25,9 @@ class Quiniela
                 return "La apuesta seleccionada no existe";
             }
             unset($this->partidosApostados[$partido]);
+            if (empty($this->partidosApostados)) {
+                return "La quiniela está vacía";
+            }
         }
 
         foreach ($this->partidosApostados as $partido => $signo) {
